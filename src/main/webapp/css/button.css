@@ -1,0 +1,94 @@
+.button1,
+.button2,
+.button3 {
+    margin-left: 50px;
+    margin-bottom: 5px;
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    letter-spacing: 2px;
+    position: center;
+    background-color: #B0C4DE;
+    border: none;
+    color: black;
+    transition-duration: 0.4s;
+    overflow: hidden;
+    box-shadow: 0 5px 15px blue;
+    border-radius: 4px;
+}
+
+.invalid {
+    background: red;
+}
+
+.xError {
+    color: red
+}
+
+.button1:hover,
+.button2:hover,
+.button3:hover {
+
+    background: #E0FFFF;
+    box-shadow: 0 2px 10px 5px darkblue;
+    color: black;
+}
+
+.button1::after,
+.button2::after,
+.button3::after {
+    content: "";
+    background: #E0FFFF;
+    display: block;
+    position: absolute;
+    padding-top: 100%;
+    padding-left: 350%;
+    margin-left: -20px;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button1:active::after,
+.button2:active::after,
+.button3:active::after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+.button1:focus,
+.button2:focus,
+.button3:focus {
+    outline: 0
+}
+
+
+#submit {
+    background-color: #B0C4DE;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    width: 250px;
+    height: 40px;
+    border-radius: 4px;
+    text-align: center;
+    letter-spacing: 2px;
+    position: center;
+}
+
+#xError {
+    color: red;
+    font-size: 90%;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+
+
+
+
+

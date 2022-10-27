@@ -1,0 +1,23 @@
+.reallyRequired {
+  &:after {
+    color: red;
+    content: attr(data-required);
+    margin-left: 630px;
+    margin-right: 600px;
+  }
+
+  & + select {
+    border: 1px solid red;
+  }
+}
+
+.selectR {
+  margin-left: 635px;
+  margin-right: 600px;
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 0 2px 0 white;
+  border-radius: 2px;
+}

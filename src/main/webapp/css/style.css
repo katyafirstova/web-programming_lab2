@@ -1,0 +1,90 @@
+body, html {
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: #e9e6ee;
+    font-weight: 300;
+    overflow: scroll
+}
+
+#result-table {
+    position: center;
+}
+
+
+svg {
+    position: absolute;
+    margin-top: -600px;
+    margin-left: -620px;
+}
+
+h3 {
+    margin-left: 50px;
+}
+
+
+header {
+    background-color: #D8BFD8;
+    padding-top: 20px;
+    color: black;
+    letter-spacing: 2px;
+}
+
+header {
+    padding-right: 20px;
+    padding-bottom: 2px;
+}
+
+.heading {
+
+    font-size: 12px;
+    color: black;
+    background-size: auto;
+    background-color: slategray;
+
+}
+
+img {
+    margin-top: -1000px;
+    margin-left: -900px;
+    width: 230px;
+    height: 230px;
+}
+
+h2 {
+    font-size: medium;
+    letter-spacing: 2px;
+}
+
+table {
+    margin: 25px 250px -550px 200px;
+    position: center;
+    border-radius: 10px;
+    background: darkgrey;
+    padding: 15px;
+    text-align: center;
+}
+
+th, td, tr {
+    border: 0 solid black;
+    border-radius: 10px;
+    background: beige;
+    margin-bottom: -50px;
+    text-align: center;
+
+}
+
+form {
+    margin-top: 60px;
+    position: center;
+
+
+}
+
+#result-table {
+    position: center;
+    margin: 5px 270px 10px;
+    width: 70%;
+}
+

@@ -1,0 +1,123 @@
+.inputY {
+  font-size: 17px;
+  padding: 10px 10px 10px 3px;
+  margin-top: 20px;
+  margin-left: 600px;
+  margin-right: 550px;
+  display: block;
+  width: 280px;
+  border: none;
+  border-bottom: 1px solid #757575;
+  background-color: #e9e6ee;
+
+  &.valid {
+    color: #44E444;
+  }
+
+  &.invalid {
+    color: #FF0000;
+  }
+
+  &::placeholder {
+    color: black;
+  }
+}
+
+.inputY:focus {
+  outline: none;
+}
+
+.inputY:focus ~ label, input:valid ~ label {
+  margin-top: -30px;
+  margin-left: 600px;
+  font-size: 14px;
+  color: #5264AE;
+}
+
+.bar {
+  margin-top: -88px;
+  margin-left: 600px;
+  position: relative;
+  display: block;
+  width: 295px;
+}
+
+.bar:before, .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  top: 68px;
+  position: absolute;
+  background: #5264AE;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+  left: 50%;
+}
+
+.bar:after {
+  right: 50%;
+}
+
+
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width: 50%;
+}
+
+.highlight {
+  position: absolute;
+  height: 100%;
+  width: 280px;
+  top: 50%;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+input:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+.form-control.success input {
+  border-color: #2ecc71;
+}
+
+.form-control.error input {
+  border-color: #e74c3c;
+}
+
+.form-control i {
+  position: absolute;
+  top: 70px;
+  right: 10px;
+  visibility: hidden;
+}
+
+.form-control.success i.fa-check-circle {
+  color: #2ecc71;
+  visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+  color: red;
+  visibility: visible;
+}
+
+.form-control small {
+  visibility: hidden;
+  margin-top: -225px;
+  margin-left: 20px;
+
+}
+
+.form-control.error small {
+  color: red;
+  visibility: visible;
+}
