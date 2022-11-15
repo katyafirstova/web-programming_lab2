@@ -5,7 +5,8 @@ body, html {
     margin: 0;
     background: #e9e6ee;
     font-weight: 300;
-    overflow: scroll
+    overflow: scroll;
+    position: center;
 }
 
 #result-table {
@@ -32,8 +33,9 @@ header {
 }
 
 header {
-    padding-right: 20px;
-    padding-bottom: 2px;
+    position: center;
+    padding-right: 250px;
+    padding-left: 250px;
 }
 
 .heading {
