@@ -9,8 +9,6 @@ let X, Y, R, result;
 const pass_reg_y = /(^-[12345]$)|(^[0123]$)|[-]([01234](\.[0-9]+)$|\.[0-9]+)$|^[-][1234]$(\.[0-9]+$)?|^[012](\.[0-9]+)/;
 const pass_reg_r = /(^[2345]$)|^[01234](\.[0-9]+)/;
 
-let canvas = $('.graph-canvas');
-
 window.onload = function () {
 
     function validateX() {
@@ -29,7 +27,6 @@ window.onload = function () {
     submitForm.on('click', function () {
         validateX();
     });
-
 
 
     function checkIfBlank() {
@@ -107,49 +104,8 @@ window.onload = function () {
     r.addEventListener('input', validateR);
 
 
-    document.getElementById("submit").onclick = function () {
-
-        X = x;
-        Y = document.getElementById("y").value;
-        R = document.getElementById("select").value;
-
-        $.get('check.php', {x: X, y: Y, r: R}, function (data) {
-            result = data;
-            let array;
-            array = result.split("#");
-            add_table(array[0], array[1], array[2], array[3]);
-            window.location.replace("a.jsp?name="+name);
-
-        });
-
-    }
-
-    $.ajax({
-        url: 'control', method: "GET",
-        data: $(this).serialize() + "&timezone=" + new Date().getTimezoneOffset(),
-        dataType: "html",
-
-        success: function(data){
-            console.log(data);
-            $(".validate_button").attr("disabled", false);
-            //window.localStorage.setItem("table",data["table"]);
-            window.location.replace("result_page.jsp");
-        },
-        error: function(error){
-            console.log(error);
-            $(".validate_button").attr("disabled", false);
-
-        },
-    });
-});
 
 
-$(".reset_button").on("click",function(e){
-    e.preventDefault();
-    const params = {'clear': true}
-    window.location.replace("control" + formatParams(params));
-
-})
 
 
 

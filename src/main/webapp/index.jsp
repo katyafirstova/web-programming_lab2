@@ -1,4 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="model.Table" %>
+<%@ page import="java.util.List" %>
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,7 +14,6 @@
     <link rel="stylesheet" href="css/select.scss">
 
     <title>web-2</title>
-
 
 </head>
 
@@ -29,27 +32,7 @@
 <table>
     <tr>
         <td>
-            <form id="form" method="get">
-
-                <svg xmlns="http://www.w3.org/2000/svg">
-                    <line x1="0" y1="150" x2="300" y2="150" stroke="#000720"></line>
-                    <line x1="150" y1="0" x2="150" y2="300" stroke="#000720"></line>
-                    <line x1="270" y1="148" x2="270" y2="152" stroke="#000720"></line>
-                    <text x="265" y="140">R</text>
-                    <text x="200" y="140">R/2</text>
-                    <text x="75" y="140">-R/2</text>
-                    <text x="20" y="140">-R</text>
-                    <text x="156" y="35">R</text>
-                    <text x="156" y="95">R/2</text>
-                    <text x="156" y="215">-R/2</text>
-                    <text x="156" y="275">-R</text>
-                    <polygon points="300,150 295,155 295, 145" fill="#000720" stroke="#000720"></polygon>
-                    <polygon points="150,0 145,5 155,5" fill="#000720" stroke="#000720"></polygon>
-                    <rect x="150" y="150" width="120" height="60" fill-opacity="0.4" stroke="navy" fill="blue"></rect>
-                    <polygon points="150,150 90,150 150,90" fill-opacity="0.4" stroke="navy" fill="blue"></polygon>
-                    <path d="M150 150 L 270 150 C 270 80 220 30 150 30 L Z" fill-opacity="0.4" stroke="navy"
-                          fill="blue"></path>
-                </svg>
+            <form id="form" action="checkPoints" method="get">
 
                 <h3>
                     X:
@@ -57,8 +40,9 @@
                 <br>
 
                 <label class="required" for="selectX" data-required="Выберите X"></label>
-                <select class="selectX" name="selectX" id="selectX">
-                    <option selected="" name="x" disabled="disabled" value="">X</option>
+
+                <select class="selectX" name="x" id="selectX">
+                    <option selected="" disabled="disabled" value="">X</option>
                     <option value="-4">-4</option>
                     <option value="-3">-3</option>
                     <option value="-2">-2</option>
@@ -110,16 +94,48 @@
                     <input type="submit" id="submit" class="btn" value="Submit">
                     <div id="response"></div>
                 </div>
-
-
             </form>
+
+            <div class="column result_table">
+                <table>
+                    <tr>
+                        <th>X</th>
+                        <th>Y</th>
+                        <th>R</th>
+                        <th>Result</th>
+                        <th>Current Time</th>
+                        <th>Execution Time</th>
+                    </tr>
+
+
+                    <%
+                        List<Table> tableRows = (List<Table>) session.getAttribute("tableRows");
+                        if (tableRows != null)
+                            for (Table tableRow : tableRows) {
+                    %>
+                    <tr>
+                        <td class="selectX"><%= tableRow.getX() %>
+                        </td>
+                        <td class="inputY"><%= tableRow.getY() %>
+                        </td>
+                        <td class="inputR"><%= tableRow.getR() %>
+                        </td>
+                        <td><%= tableRow.getResult() %>
+                        </td>
+                        <td><%= tableRow.getCurrentTime() %>
+                        </td>
+                        <td><%= tableRow.getExecutionTime()%>
+                        </td>
+                    </tr>
+                    <%}%>
+
+                </table>
+            </div>
         </td>
     </tr>
 
 </table>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="js/validator.js"></script>
-<script src="js/drawer.js"></script>
-
 </body>
 </html>
