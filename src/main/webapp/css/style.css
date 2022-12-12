@@ -65,17 +65,9 @@ th, td, tr {
     text-align: center;
 
 }
-
-/* #areas {
-    background-size: auto;
-!important;
-
-} */
-
-#areas, #visualization_container {
-    margin-top: 1px;
-    margin-left: 1px;
-    background-image: url("areas.png");
+#areas {
+    background: url("areas.png") center no-repeat;
+    background-size: contain;
 }
 
 #visualization_container {
@@ -87,12 +79,12 @@ th, td, tr {
     box-shadow: 4px 4px 4px #E40045, -4px -4px 4px #E40045, 4px -4px 4px #E40045, -4px 4px 4px #E40045;
 }
 
-/* form {
+form {
     width: 100%;
     height: 100%;
     margin: 0;
     position: center;
-} */
+}
 
 .send_form .input_err {
     background-color: #E40045;
@@ -114,3 +106,7 @@ th, td, tr {
     width: 70%;
 }
 
+.sel {
+    background-color: #FF9200 !important;
+    color: white !important;
+}

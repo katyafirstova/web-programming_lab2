@@ -2,6 +2,8 @@
 <%@ page import="model.Table" %>
 <%@ page import="java.util.List" %>
 
+<%  List<Table> tableRows = (List<Table>) session.getAttribute("tableRows"); %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +37,7 @@
         <tr>
             <td>
                 <div id="visualization_container" class="column">
-                    <canvas width="450px" height="450px" id="areas">
+                    <canvas width="320px" height="320px" id="areas">
                     </canvas>
                 </div>
 
@@ -89,7 +91,7 @@
                     <div class="form-control">
                         <label for="r"></label>
                         <input name="r" id="r" class="inputR"
-                               placeholder="Введите значение от 2 до 5" onchange="validateR()">
+                               placeholder="Введите значение от 2 до 5" onchange="changeR()">
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
                         <small>Error message</small>
@@ -116,7 +118,6 @@
 
 
                         <%
-                            List<Table> tableRows = (List<Table>) session.getAttribute("tableRows");
                             if (tableRows != null)
                                 for (Table tableRow : tableRows) {
                         %>

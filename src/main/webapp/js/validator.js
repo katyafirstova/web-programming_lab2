@@ -33,12 +33,16 @@ function checkIfBlank() {
     if (yValue === '' || rValue === '') {
         setErrorFor(y, 'поле не может быть пустым');
         setErrorFor(r, 'поле не может быть пустым');
+        canvasContainer.classList.add("input_err");
 
     } else {
         setSuccessFor(y);
         setSuccessFor(r);
+        canvasContainer.classList.remove("input_err");
+        r.classList.add("sel")
     }
 }
+
 
 submitForm.on('click', function () {
     checkIfBlank();
@@ -81,22 +85,48 @@ submitForm.on('click', function () {
 
 y.addEventListener('input', validateY);
 
-
-function validateR() {
-    let strR = r.value;
-    if (strR.target.name === "r")
-        if (pass_reg_r.test(strR.target.value.replace(/\s/g, ''))) {
-            strR.target.classList.add('valid');
-            strR.target.classList.remove('invalid');
-            r.value = strR.target.value;
+function validateR(e) {
+    if (e.target.name === "r")
+        if (pass_reg_r.test(e.target.value.replace(/\s/g, ''))) {
+            e.target.classList.add('valid');
+            e.target.classList.remove('invalid');
+            r.value = e.target.value;
             setSuccessFor(r);
         } else {
-            strR.target.classList.add('invalid');
-            strR.target.classList.remove('valid');
+            e.target.classList.add('invalid');
+            e.target.classList.remove('valid');
             setErrorFor(r);
         }
+}
+
+
+function checkR() {
+    let input = document.getElementById("r");
+    if (input.value === "") {
+        input.classList.add("input_err");
+        return false;
+    }
+    input.classList.remove("input_err");
+    canvasContainer.classList.remove("input_err");
     return true;
 }
+
+function changeR() {
+    let rValue = document.getElementById("r").value;
+    let input = document.getElementById("r");
+    if (!input.classList.contains("sel")) {
+        r.value = rValue;
+        let oldSelectedButton = document.querySelector(".sel");
+        if (oldSelectedButton !== null)
+            oldSelectedButton.classList.remove("sel");
+        input.classList.add("sel");
+        checkR();
+    } else {
+        r.value = "";
+        input.classList.remove("sel");
+    }
+}
+
 
 submitForm.on('click', function () {
     validateR();
