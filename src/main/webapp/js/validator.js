@@ -28,18 +28,22 @@ submitForm.on('click', function () {
 
 
 function checkIfBlank() {
+    let input = document.getElementById("r");
     let yValue = y.value.replace(/\D/g, '');
     let rValue = r.value.replace(/\D/g, '');
     if (yValue === '' || rValue === '') {
         setErrorFor(y, 'поле не может быть пустым');
         setErrorFor(r, 'поле не может быть пустым');
         canvasContainer.classList.add("input_err");
-
+        input.classList.add("input_err");
+        return false;
     } else {
         setSuccessFor(y);
         setSuccessFor(r);
         canvasContainer.classList.remove("input_err");
+        input.classList.remove("input_err");
         r.classList.add("sel")
+        return true;
     }
 }
 
@@ -85,42 +89,33 @@ submitForm.on('click', function () {
 
 y.addEventListener('input', validateY);
 
-function validateR(e) {
-    if (e.target.name === "r")
-        if (pass_reg_r.test(e.target.value.replace(/\s/g, ''))) {
-            e.target.classList.add('valid');
-            e.target.classList.remove('invalid');
-            r.value = e.target.value;
-            setSuccessFor(r);
-        } else {
-            e.target.classList.add('invalid');
-            e.target.classList.remove('valid');
-            setErrorFor(r);
-        }
-}
-
-
-function checkR() {
-    let input = document.getElementById("r");
-    if (input.value === "") {
-        input.classList.add("input_err");
-        return false;
+function validateR() {
+    let rValue = document.getElementById("r");
+    if (pass_reg_r.test(rValue.replace(/\s/g, ''))) {
+        rValue.classList.add('valid');
+        rValue.classList.add('sel');
+        rValue.classList.remove('invalid');
+        r.value = rValue.value;
+        setSuccessFor(r);
+    } else {
+        rValue.classList.add('invalid');
+        rValue.classList.remove('valid');
+        rValue.classList.remove('sel');
+        setErrorFor(r);
     }
-    input.classList.remove("input_err");
-    canvasContainer.classList.remove("input_err");
-    return true;
+
 }
+
 
 function changeR() {
     let rValue = document.getElementById("r").value;
     let input = document.getElementById("r");
-    if (!input.classList.contains("sel")) {
+    if (input.classList.contains("sel")) {
         r.value = rValue;
-        let oldSelectedButton = document.querySelector(".sel");
-        if (oldSelectedButton !== null)
-            oldSelectedButton.classList.remove("sel");
+        let oldValue = document.querySelector(".sel");
+        if (oldValue !== null)
+            oldValue.classList.remove("sel");
         input.classList.add("sel");
-        checkR();
     } else {
         r.value = "";
         input.classList.remove("sel");
