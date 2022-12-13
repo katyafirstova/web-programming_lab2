@@ -1,31 +1,24 @@
 "use strict"
-const form = document.querySelector('#form');
+const form = document.getElementById("form");
 let x = form.elements.namedItem("x");
 let y = form.elements.namedItem("y");
 let r = form.elements.namedItem("r");
-let submitForm = $('#submit');
 
-const pass_reg_y = /(^-[12345]$)|(^[0123]$)|[-]([01234](\.[0-9]+)$|\.[0-9]+)$|^[-][1234]$(\.[0-9]+$)?|^[012](\.[0-9]+)/;
 const pass_reg_r = /(^[2345]$)|^[01234](\.[0-9]+)/;
 
 
 function validateX() {
     let label = $('label');
-    let selectedVal = $(".selectX");
     label.removeClass('reallyRequired');
-    if (selectedVal.val() === "" || selectedVal.val() == null) {
-        selectedVal.prev('label').addClass('reallyRequired');
+    if (x.value === "") {
+        x.prev('label').addClass('reallyRequired');
+        x.classList.add("input_err");
         return false;
     } else {
         label.removeClass('reallyRequired');
+        return true;
     }
-    x = selectedVal.val();
 }
-
-submitForm.on('click', function () {
-    validateX();
-});
-
 
 function checkIfBlank() {
     let yValue = y.value.replace(/\D/g, '');
@@ -41,11 +34,6 @@ function checkIfBlank() {
         canvasContainer.classList.remove("input_err");
     }
 }
-
-submitForm.on('click', function () {
-    checkIfBlank();
-});
-
 
 function setErrorFor(input, message) {
     const formControl = input.parentElement;
@@ -76,14 +64,6 @@ function validateY() {
     }
 
 }
-
-submitForm.on('click', function () {
-    validateY();
-});
-
-
-y.addEventListener('input', validateY);
-
 
 function validateR() {
     let rVal = r.value;
@@ -117,16 +97,17 @@ function changeR() {
     }
 }
 
-submitForm.on('click', function () {
-    validateR();
+form.addEventListener("submit", function (e) {
+    if (!validateX() || !validateY() || !validateR() || checkIfBlank()) e.preventDefault();
 });
 
-r.addEventListener('input', validateR);
+x.addEventListener("input", function () {
+    x.classList.remove("input_err");
 
-if (validateR && validateX && validateY) {
-    submitForm.submit();
-}
-
+});
+y.addEventListener("input", function () {
+    y.classList.remove("input_err");
+});
 
 
 

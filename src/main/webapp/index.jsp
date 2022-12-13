@@ -71,7 +71,7 @@
                     <div class="form-control">
                         <label for="y"></label>
                         <input name="y" id="y" class="inputY"
-                               placeholder="исло в диапазоне (-5;3)" maxlength="6">
+                               placeholder="Число в диапазоне (-5;3)" maxlength="6">
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
                         <small>Error message</small>
@@ -98,7 +98,7 @@
 
                     </div>
 
-                    <button type="submit" id="submit" class="btn" value="Submit">submit</button>
+                    <button type="submit" id="submitBtn" class="btn">submit</button>
                 </form>
 
                 <div class="column result_table" id="result-table">
