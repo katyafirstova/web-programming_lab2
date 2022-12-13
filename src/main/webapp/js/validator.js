@@ -4,8 +4,6 @@ let x = form.elements.namedItem("x");
 let y = form.elements.namedItem("y");
 let r = form.elements.namedItem("r");
 
-const pass_reg_r = /(^[2345]$)|^[01234](\.[0-9]+)/;
-
 
 function validateX() {
     let label = $('label');
@@ -67,16 +65,17 @@ function validateY() {
 
 function validateR() {
     let rVal = r.value;
-    if (pass_reg_r.test(rVal.replace(/\s/g, ''))) {
-        r.classList.add('valid');
-        r.classList.remove('invalid');
-        setSuccessFor(r);
-        return true;
-    } else {
+    if (!isFinite(rVal) || (rVal <= 2 || rVal >= 5)) {
         r.classList.add('invalid');
         r.classList.remove('valid');
         setErrorFor(r);
         return false;
+    } else {
+        r.classList.add('valid');
+        r.classList.remove('invalid');
+        setSuccessFor(r);
+        return true;
+
     }
 }
 

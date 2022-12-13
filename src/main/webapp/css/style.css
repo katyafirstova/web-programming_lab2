@@ -79,13 +79,6 @@ th, td, tr {
     box-shadow: 4px 4px 4px #E40045, -4px -4px 4px #E40045, 4px -4px 4px #E40045, -4px 4px 4px #E40045;
 }
 
-form {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    position: center;
-}
-
 .send_form .input_err {
     background-color: #E40045;
     border-color: #94002D;
@@ -100,9 +93,8 @@ form {
 }
 
 #result-table {
-    position: center;
-    margin-left: 600px;
-    margin-right: 550px;
+    position: relative;
+    margin-left: 100px;
     width: 70%;
 }
 
@@ -112,7 +104,8 @@ form {
 }
 
 .send_form {
-    padding: 50px 0;
-    display: inline-block;
-    text-align: left;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: center;
 }

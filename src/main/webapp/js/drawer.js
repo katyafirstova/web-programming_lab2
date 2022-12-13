@@ -5,6 +5,7 @@ let canvas = document.getElementById("areas");
 let ctx = canvas.getContext("2d");
 let width = 320;
 let canvasR = 117;
+let submitForm = document.querySelector(".send_form");
 
 canvas.addEventListener("click", function (e) {
     let canvasX = e.pageX - this.offsetLeft;
@@ -27,10 +28,8 @@ window.onload = function () {
 };
 
     function sendDataToForm(xVal, yVal) {
-        let x = document.getElementById('selectX');
-        let y = document.getElementById('y');
-        let r = document.getElementById('r');
-        x.value = (xVal * r.value / canvasR).toString().substr(0, 6);
+
+        x.value = Math.round(xVal * r.value / canvasR);
         y.value = (yVal * r.value / canvasR).toString().substr(0, 6);
         submitForm.submit();
     }
