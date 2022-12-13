@@ -28,25 +28,19 @@ submitForm.on('click', function () {
 
 
 function checkIfBlank() {
-    let input = document.getElementById("r");
     let yValue = y.value.replace(/\D/g, '');
     let rValue = r.value.replace(/\D/g, '');
     if (yValue === '' || rValue === '') {
         setErrorFor(y, 'поле не может быть пустым');
         setErrorFor(r, 'поле не может быть пустым');
         canvasContainer.classList.add("input_err");
-        input.classList.add("input_err");
-        return false;
+
     } else {
         setSuccessFor(y);
         setSuccessFor(r);
         canvasContainer.classList.remove("input_err");
-        input.classList.remove("input_err");
-        r.classList.add("sel")
-        return true;
     }
 }
-
 
 submitForm.on('click', function () {
     checkIfBlank();
@@ -67,18 +61,19 @@ function setSuccessFor(input) {
 
 }
 
-function validateY(e) {
-    if (e.target.name === "y")
-        if (pass_reg_y.test(e.target.value.replace(/\s/g, ''))) {
-            e.target.classList.add('valid');
-            e.target.classList.remove('invalid');
-            y.value = e.target.value;
-            setSuccessFor(y);
-        } else {
-            e.target.classList.add('invalid');
-            e.target.classList.remove('valid');
-            setErrorFor(y);
-        }
+function validateY() {
+    let yVal = y.value.replace(/\s/g, '')
+    if (!isFinite(yVal) || (yVal <= -5 || yVal >= 3)) {
+        y.classList.add('invalid');
+        y.classList.remove('valid');
+        setErrorFor(y);
+        return false;
+    } else {
+        y.classList.add('valid');
+        y.classList.remove('invalid');
+        setSuccessFor(y);
+        return true;
+    }
 
 }
 
@@ -89,39 +84,38 @@ submitForm.on('click', function () {
 
 y.addEventListener('input', validateY);
 
+
 function validateR() {
-    let rValue = document.getElementById("r");
-    if (pass_reg_r.test(rValue.replace(/\s/g, ''))) {
-        rValue.classList.add('valid');
-        rValue.classList.add('sel');
-        rValue.classList.remove('invalid');
-        r.value = rValue.value;
+    let rVal = r.value;
+    if (pass_reg_r.test(rVal.replace(/\s/g, ''))) {
+        r.classList.add('valid');
+        r.classList.remove('invalid');
         setSuccessFor(r);
+        return true;
     } else {
-        rValue.classList.add('invalid');
-        rValue.classList.remove('valid');
-        rValue.classList.remove('sel');
+        r.classList.add('invalid');
+        r.classList.remove('valid');
         setErrorFor(r);
+        return false;
     }
-
 }
-
 
 function changeR() {
     let rValue = document.getElementById("r").value;
     let input = document.getElementById("r");
     if (input.classList.contains("sel")) {
+        r.value = "";
+        input.classList.remove("sel");
+    } else {
         r.value = rValue;
         let oldValue = document.querySelector(".sel");
         if (oldValue !== null)
             oldValue.classList.remove("sel");
         input.classList.add("sel");
-    } else {
-        r.value = "";
-        input.classList.remove("sel");
+        validateR();
+
     }
 }
-
 
 submitForm.on('click', function () {
     validateR();

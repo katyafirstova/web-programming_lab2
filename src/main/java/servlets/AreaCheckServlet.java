@@ -23,8 +23,8 @@ public class AreaCheckServlet extends HttpServlet {
             long startTime = System.nanoTime();
             String currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
             int xVal = Integer.parseInt(request.getParameter("x").trim());
-            int yVal = Integer.parseInt(request.getParameter("y").trim());
-            int rVal = Integer.parseInt(request.getParameter("r").trim());
+            double yVal = Double.parseDouble(request.getParameter("y").trim());
+            double rVal = Double.parseDouble(request.getParameter("r").trim());
 
             boolean isValid = checkIfValid(xVal, yVal, rVal);
 
@@ -60,7 +60,7 @@ public class AreaCheckServlet extends HttpServlet {
 
     private boolean checkY(double yVal) {
         try {
-            return (yVal >= -5 && yVal <= 3);
+            return (yVal > -5 && yVal < 3);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
@@ -69,7 +69,7 @@ public class AreaCheckServlet extends HttpServlet {
 
     private boolean checkR(double rVal) {
         try {
-            return (rVal >= 2 && rVal <= 5);
+            return (rVal > 2 && rVal < 5);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }

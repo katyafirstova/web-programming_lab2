@@ -71,7 +71,7 @@
                     <div class="form-control">
                         <label for="y"></label>
                         <input name="y" id="y" class="inputY"
-                               placeholder="Введите значение от -5 до 3" maxlength="6">
+                               placeholder="исло в диапазоне (-5;3)" maxlength="6">
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
                         <small>Error message</small>
@@ -91,7 +91,7 @@
                     <div class="form-control">
                         <label for="r"></label>
                         <input name="r" id="r" class="inputR"
-                               placeholder="Введите значение от 2 до 5" maxlength="6" onchange="changeR()">
+                               placeholder="Число в диапазоне (2;5)" maxlength="6" onblur="changeR()">
                         <small>Error message</small>
                         <span class="rError" aria-live="polite"></span>
                         <div class="rError" id="rError"></div>
