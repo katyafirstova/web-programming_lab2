@@ -3,17 +3,24 @@ const form = document.getElementById("form");
 let x = form.elements.namedItem("x");
 let y = form.elements.namedItem("y");
 let r = form.elements.namedItem("r");
+let xError = document.getElementsByClassName("xError");
 
 
 function validateX() {
+
     let label = $('label');
+    let selectedVal = $(".selectX");
     label.removeClass('reallyRequired');
-    if (x.value === "") {
-        x.prev('label').addClass('reallyRequired');
-        x.classList.add("input_err");
+    if (selectedVal.val() === "" || selectedVal.val() == null) {
+        selectedVal.prev('label').addClass('reallyRequired');
+        selectedVal.classList.add("input_err");
+        printError("xError", "выберите x");
         return false;
     } else {
         label.removeClass('reallyRequired');
+        printError("xError", "");
+        x = selectedVal.val();
+        xError = false;
         return true;
     }
 }
@@ -25,11 +32,13 @@ function checkIfBlank() {
         setErrorFor(y, 'поле не может быть пустым');
         setErrorFor(r, 'поле не может быть пустым');
         canvasContainer.classList.add("input_err");
+        return false;
 
     } else {
         setSuccessFor(y);
         setSuccessFor(r);
         canvasContainer.classList.remove("input_err");
+        return true;
     }
 }
 
@@ -47,12 +56,15 @@ function setSuccessFor(input) {
 
 }
 
+function printError(elemId, hintMsg) {
+    document.getElementById(elemId).innerHTML = hintMsg;
+}
+
 function validateY() {
     let yVal = y.value.replace(/\s/g, '')
     if (!isFinite(yVal) || (yVal <= -5 || yVal >= 3)) {
         y.classList.add('invalid');
         y.classList.remove('valid');
-        setErrorFor(y);
         return false;
     } else {
         y.classList.add('valid');
@@ -68,7 +80,6 @@ function validateR() {
     if (!isFinite(rVal) || (rVal <= 2 || rVal >= 5)) {
         r.classList.add('invalid');
         r.classList.remove('valid');
-        setErrorFor(r);
         return false;
     } else {
         r.classList.add('valid');
@@ -96,6 +107,15 @@ function changeR() {
     }
 }
 
+y.addEventListener('input', validateY);
+r.addEventListener('input', validateY);
+form.on('click', function () {
+    validateX();
+    validateY();
+    validateR();
+
+
+});
 form.addEventListener("submit", function (e) {
     if (!validateX() || !validateY() || !validateR() || checkIfBlank()) e.preventDefault();
 });

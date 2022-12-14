@@ -1,4 +1,27 @@
-.inputY, .inputR {
+.inputY {
+  font-size: 17px;
+  position: center;
+  padding: 10px 10px 10px 3px;
+  margin-top: 20px;
+  margin-left: 680px;
+  margin-right: 550px;
+
+  &.valid {
+    color: #44E444;
+  }
+
+  &.invalid {
+    color: #FF0000;
+  }
+
+  &::placeholder {
+    color: black;
+  }
+}
+
+.inputR {
+  margin-top: 10px;
+  margin-left: 100px;
   font-size: 17px;
   position: center;
   padding: 10px 10px 10px 3px;
@@ -14,17 +37,6 @@
   &::placeholder {
     color: black;
   }
-}
-
-.inputY {
-  margin-top: 20px;
-  margin-left: 600px;
-  margin-right: 550px;
-}
-
-.inputR {
-  margin-top: 10px;
-  margin-left: 100px;
 
 }
 .form-control.success input {
@@ -38,7 +50,6 @@
 .form-control i {
   position: absolute;
   top: 70px;
-  right: 10px;
   visibility: hidden;
 }
 

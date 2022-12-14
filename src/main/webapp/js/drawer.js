@@ -28,7 +28,6 @@ window.onload = function () {
 };
 
     function sendDataToForm(xVal, yVal) {
-
         x.value = Math.round(xVal * r.value / canvasR);
         y.value = (yVal * r.value / canvasR).toString().substr(0, 6);
         submitForm.submit();
@@ -36,7 +35,7 @@ window.onload = function () {
 
 function drawPoints(canvasX, canvasY) {
     ctx.beginPath();
-    ctx.arc(canvasX, canvasY, 5, 0, 2 * Math.PI);
+    ctx.arc(canvasX, canvasY, 3, 0, 2 * Math.PI);
     ctx.fillStyle = "#E40045";
     ctx.fill();
     console.log(`${canvasX - width / 2} ${width / 2 - canvasY}`);

@@ -2,7 +2,7 @@
 <%@ page import="model.Table" %>
 <%@ page import="java.util.List" %>
 
-<%  List<Table> tableRows = (List<Table>) session.getAttribute("tableRows"); %>
+<% List<Table> tableRows = (List<Table>) session.getAttribute("tableRows"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +33,7 @@
         </h2>
     </header>
 
-    <table>
+    <table id="main-table">
         <tr>
             <td>
                 <div id="visualization_container" class="column">
@@ -49,7 +49,6 @@
                     <br>
 
                     <label class="required" for="selectX" data-required="Выберите X"></label>
-
                     <select class="selectX" name="x" id="selectX">
                         <option selected="" disabled="disabled" value="">X</option>
                         <option value="-4">-4</option>
@@ -62,7 +61,6 @@
                         <option value="3">3</option>
                         <option value="4">4</option>
                     </select>
-
                     <div class="error" id="xError"></div>
                     <br>
                     <h3>
@@ -101,8 +99,8 @@
                     <button type="submit" id="submitBtn" class="btn">submit</button>
                 </form>
 
-                <div class="column result_table" id="result-table">
-                    <table>
+                <div class="column result_table">
+                    <table id="result-table">
                         <tr>
                             <th>X</th>
                             <th>Y</th>
@@ -111,7 +109,6 @@
                             <th>Current Time</th>
                             <th>Execution Time</th>
                         </tr>
-
 
                         <%
                             if (tableRows != null)
